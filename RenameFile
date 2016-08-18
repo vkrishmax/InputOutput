@@ -1,0 +1,47 @@
+
+Create a File Rename Existing in Java
+
+Using file.renameTo method in java.io.File package, we can rename an existing file. See the example below. 
+
+package com.seleniummaster.examplefile;
+
+import java.io.File;
+import java.io.IOException;
+
+public class CreateFileRenameExisting {
+
+    public static void main(String[] args)
+    {
+        CreateFileRenameExisting("testfile.txt");
+    }
+
+    //Rename an existing file and create a new file
+    public static void CreateFileRenameExisting(String filename)
+    {
+        //get current project path
+        String filePath=System.getProperty("user.dir");
+        //create a new file
+        File file=new File(filePath+"\\"+filename);
+        try {
+            if(!file.exists()) {
+                file.createNewFile();
+                System.out.println("File is created");
+            }
+            else
+            {
+                File backupFile=new File(filePath+"\\"+"backup_"+file.getName());
+                System.out.println("File already exist and backup file is created");
+                file.renameTo(backupFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    }
+
+ 
+Run the code and see the result file
+
+File already exist and backup file is created
+< Prev Next >
