@@ -1,0 +1,36 @@
+Using LineNumberReader in java.io.File package, you can read content and line number of a text file. See the example below. 
+
+package com.seleniummaster.examplefile;
+
+import java.io.*;
+
+public class ReadTextFileLineNumber {
+
+    public static void main(String[] args) throws IOException {
+        ReadToString("test.txt");
+    }
+
+    public static void ReadToString(String fileToRead) throws IOException {
+        StringBuilder contents = new StringBuilder();
+        String workingDir = System.getProperty("user.dir");
+        File file = new File(workingDir + File.separator +fileToRead);
+        System.out.println(file);
+        LineNumberReader reader = new LineNumberReader(new FileReader(file));
+        BufferedReader br=new BufferedReader(new FileReader(file));
+        String s="";
+        while (reader.readLine()!=null) {
+            int lineNumber = reader.getLineNumber();
+           s=br.readLine();
+            System.out.println(lineNumber +":" +"content "+s);
+        }
+    }
+}
+Run the code and see the result below
+
+C:\seleniummaster\test.txt
+1:content Hello Test
+2:content Selenium Master
+3:content This is a new test 
+4:content This is a new test 
+
+Process finished with exit code 0
