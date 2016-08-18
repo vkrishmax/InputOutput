@@ -1,0 +1,43 @@
+Email
+Print
+Random Access Text File Java
+
+Using RandomAccessFile in java.io.File package, you can randomly read and write a file in Java. See the example below. 
+
+package com.seleniummaster.examplefile;
+
+import java.io.*;
+
+public class RandomAccessTextFile {
+
+    public static void main(String[] args)
+    {
+   ReadToString("test.txt");
+    }
+
+    public static void ReadToString(String FileToText)
+    {
+          String workingDir = System.getProperty("user.dir");
+        String filePath = workingDir + File.separator;
+        System.out.println(filePath);
+
+        try {
+            RandomAccessFile file=new RandomAccessFile(filePath+File.separator+FileToText,"rw");
+            System.out.println(file.readLine());
+            long point=file.getFilePointer();
+            System.out.println(point);
+            //move cursor to the last of the file
+            file.seek(file.length());
+            file.write("This is a new test \n".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+Run the code, open the file "test.txt" and see its content
+
+Hello Test
+Selenium Master
+This is a new test 
+This is a new test 
